@@ -1,12 +1,15 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React from "react";
+import { View, Text } from "react-native";
+import { Provider as PaperProvider } from "react-native-paper";
 
 const App = () => {
   return (
-    <View>
-      <Text>Hello world</Text>
-      <Text>Hello Vela</Text>
-    </View>
+    <PaperProvider>
+      <View>
+        <Text>Hello world</Text>
+        <Text>Hello Vela</Text>
+      </View>
+    </PaperProvider>
   );
 };
 
