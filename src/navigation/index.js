@@ -7,7 +7,6 @@ import MainStack from "./mainStack";
 
 const Route = () => {
   const { isLogin } = useSelector((state) => state.auth);
-  console.log({ isLogin });
 
   return (
     <NavigationContainer>
