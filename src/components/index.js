@@ -1,3 +1,4 @@
 import Button from "./Button";
+import CardMenu from "./CardMenu";
 
-export { Button };
+export { Button, CardMenu };

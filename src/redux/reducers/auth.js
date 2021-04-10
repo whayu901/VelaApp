@@ -2,7 +2,7 @@ import { LOGIN_PENDING, LOGIN_SUCCESS, LOGIN_ERROR } from "../actions";
 
 const initialState = {
   token: "",
-  isLogin: false,
+  isLogin: true,
   isLoadingLogin: false,
 };
 
