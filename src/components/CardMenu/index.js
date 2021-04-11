@@ -3,9 +3,9 @@ import { View, Text, TouchableOpacity } from "react-native";
 
 import styles from "./styles";
 
-const CardMenu = () => {
+const CardMenu = ({ title, onPress }) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View
         style={{
           alignSelf: "center",
@@ -13,7 +13,7 @@ const CardMenu = () => {
           justifyContent: "center",
           flex: 1,
         }}>
-        <Text style={styles.textMenu}>Barang Keluar</Text>
+        <Text style={styles.textMenu}>{title}</Text>
       </View>
     </TouchableOpacity>
   );
