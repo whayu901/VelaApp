@@ -42,7 +42,10 @@ const LoginPage = () => {
           </View>
 
           <View style={{ margin: 10 }}>
-            <Button text={"Login"} />
+            <Button
+              text={"Login"}
+              onPress={() => navigation.navigate("Home")}
+            />
           </View>
 
           <View style={{ marginHorizontal: 10 }}>

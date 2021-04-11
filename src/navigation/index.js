@@ -2,15 +2,12 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 
-import AuthStack from "./authStack";
-import MainStack from "./mainStack";
+import MainStack from "./MainStack";
 
 const Route = () => {
-  const { isLogin } = useSelector((state) => state.auth);
-
   return (
     <NavigationContainer>
-      {isLogin ? <MainStack /> : <AuthStack />}
+      <MainStack />
     </NavigationContainer>
   );
 };
