@@ -7,6 +7,7 @@ import ListBarangScreen from "../pages/ListBarang";
 
 import LoginScreen from "../pages/Login";
 import RegisterScreen from "../pages/Register";
+import BarangMasukScreen from "../pages/BarangMasuk";
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,7 @@ export default AuthStack = () => {
       />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="ListBarang" component={ListBarangScreen} />
+      <Stack.Screen name="BarangMasuk" component={BarangMasukScreen} />
     </Stack.Navigator>
   );
 };

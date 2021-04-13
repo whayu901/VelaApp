@@ -29,7 +29,10 @@ const HomeScreen = () => {
             />
           </View>
           <View>
-            <CardMenu title="Barang Masuk" />
+            <CardMenu
+              title="Barang Masuk"
+              onPress={() => navigation.navigate("BarangMasuk")}
+            />
           </View>
         </View>
 
@@ -38,7 +41,7 @@ const HomeScreen = () => {
             flexDirection: "row",
             justifyContent: "space-between",
             marginHorizontal: 25,
-            marginTop: 20,
+            marginTop: 25,
           }}>
           <View>
             <CardMenu title="Barang Keluar" />
