@@ -4,6 +4,9 @@ const styles = StyleSheet.create({
   container: {
     alignContent: "center",
   },
+  inputContainer: {
+    margin: 10,
+  },
 });
 
 export default styles;
