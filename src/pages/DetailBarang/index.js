@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -7,7 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import IconDelete from "react-native-vector-icons/Ionicons";
 import { TextInput } from "react-native-paper";
 import { TextInputMask } from "react-native-masked-text";
@@ -15,8 +15,8 @@ import { TextInputMask } from "react-native-masked-text";
 import styles from "./styles";
 import { Button } from "../../components";
 
-const BarangMasuk = () => {
-  const navigation = useNavigation();
+const DetailBarang = () => {
+  const route = useRoute();
 
   const [namaBarang, setNamaBarang] = useState("");
   const [jumlahBarang, setJumlahBarang] = useState("");
@@ -96,11 +96,13 @@ const BarangMasuk = () => {
         </View>
 
         <View style={{ marginHorizontal: 10 }}>
-          <Button text={"Tambah"} />
+          <Button
+            text={route.params.isDetail ? "Edit Barang" : "Keluarkan Barang"}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-export default BarangMasuk;
+export default DetailBarang;

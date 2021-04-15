@@ -4,13 +4,13 @@ import IconPencil from "react-native-vector-icons/Ionicons";
 
 import styles from "./styles";
 
-const CardBarang = () => {
+const CardBarang = ({ onPress }) => {
   return (
     <View style={styles.container}>
-      <View>
+      <TouchableOpacity onPress={onPress}>
         <Text style={{ fontSize: 16, fontWeight: "bold" }}>Nama Barang</Text>
         <Text style={{ textAlign: "center" }}>Busi Yamaha</Text>
-      </View>
+      </TouchableOpacity>
 
       <View>
         <Text style={{ fontSize: 16, fontWeight: "bold" }}>QTY</Text>

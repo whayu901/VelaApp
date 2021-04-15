@@ -8,6 +8,8 @@ import ListBarangScreen from "../pages/ListBarang";
 import LoginScreen from "../pages/Login";
 import RegisterScreen from "../pages/Register";
 import BarangMasukScreen from "../pages/BarangMasuk";
+import DetailScreen from "../pages/DetailBarang";
+import LaporanScreen from "../pages/Laporan";
 
 import CameraScreen from "../pages/Camera";
 
@@ -35,6 +37,8 @@ export default AuthStack = () => {
       <Stack.Screen name="ListBarang" component={ListBarangScreen} />
       <Stack.Screen name="BarangMasuk" component={BarangMasukScreen} />
       <Stack.Screen name="Kamera" component={CameraScreen} />
+      <Stack.Screen name="Detail" component={DetailScreen} />
+      <Stack.Screen name="Laporan" component={LaporanScreen} />
     </Stack.Navigator>
   );
 };

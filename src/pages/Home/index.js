@@ -47,7 +47,10 @@ const HomeScreen = () => {
             <CardMenu title="Barang Keluar" />
           </View>
           <View>
-            <CardMenu title="Laporan" />
+            <CardMenu
+              title="Laporan"
+              onPress={() => navigation.navigate("Laporan")}
+            />
           </View>
         </View>
       </View>
