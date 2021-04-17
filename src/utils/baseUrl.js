@@ -1,6 +1,6 @@
 const ENV = {
   dev: {
-    API_URL: "18.219.100.144:80/api/",
+    API_URL: "http://18.219.100.144:80/api/",
     env: "dev",
   },
 };
