@@ -153,7 +153,7 @@ const Axios = {
         });
     });
   },
-  Patch: ({ url, params, data, cancelToken }) => {
+  Patch: ({ url, params, data, cancelToken, token }) => {
     const userToken = getUserToken();
     if (userToken) {
       data["x-access-token"] = userToken;
@@ -166,6 +166,7 @@ const Axios = {
           method: "PATCH",
           headers: {
             ...defaultHeaders,
+            Authorization: `Bearer ${token}`,
           },
           cancelToken: cancelToken,
           data,
@@ -182,7 +183,7 @@ const Axios = {
         });
     });
   },
-  Delete: ({ url, params, data, cancelToken }) => {
+  Delete: ({ url, params, data, cancelToken, token }) => {
     const userToken = getUserToken();
     if (userToken) {
       data["x-access-token"] = userToken;
@@ -195,6 +196,7 @@ const Axios = {
           method: "DELETE",
           headers: {
             ...defaultHeaders,
+            Authorization: `Bearer ${token}`,
           },
           cancelToken: cancelToken,
         })

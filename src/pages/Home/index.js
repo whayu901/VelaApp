@@ -1,18 +1,38 @@
 import React from "react";
 import { SafeAreaView, View, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-// import styles from "./styles";
 import { CardMenu } from "../../components";
+import { Colors } from "../../config";
+import { logout } from "../../redux/actions";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const { auth } = useSelector(
+    (state) => ({
+      auth: state.auth,
+    }),
+    shallowEqual,
+  );
+
+  const Logout = () => {
+    dispatch(logout());
+    navigation.navigate("Login");
+  };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <View>
-        <View style={{ marginTop: 70, marginLeft: 25 }}>
-          <Text style={{ fontSize: 20 }}>Hi, Vela</Text>
+        <TouchableOpacity
+          onPress={() => Logout()}
+          style={{ marginLeft: "auto", marginRight: 25, marginTop: 20 }}>
+          <Text style={{ color: Colors.primary }}>Keluar</Text>
+        </TouchableOpacity>
+        <View style={{ marginTop: 50, marginLeft: 25 }}>
+          <Text style={{ fontSize: 20 }}>Hi, {auth.name}</Text>
         </View>
 
         <View
@@ -20,7 +40,7 @@ const HomeScreen = () => {
             flexDirection: "row",
             justifyContent: "space-between",
             marginHorizontal: 25,
-            marginTop: 120,
+            marginTop: 100,
           }}>
           <View>
             <CardMenu
@@ -44,7 +64,10 @@ const HomeScreen = () => {
             marginTop: 25,
           }}>
           <View>
-            <CardMenu title="Barang Keluar" />
+            <CardMenu
+              title="Barang Keluar"
+              onPress={() => navigation.navigate("BarangKeluar")}
+            />
           </View>
           <View>
             <CardMenu

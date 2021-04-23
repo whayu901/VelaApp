@@ -29,6 +29,8 @@ class Camera extends Component {
         resizedImage = response;
       });
 
+      console.log(resizedImage.uri);
+
       this.setState({
         imgUri: resizedImage.uri,
         isLoading: false,

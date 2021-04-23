@@ -13,6 +13,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 15,
   },
+  pilihtext: {
+    color: Colors.primary,
+  },
 });
 
 export default styles;

@@ -4,18 +4,16 @@ import { TextInput } from "react-native-paper";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useNavigation } from "@react-navigation/native";
 import Modal from "react-native-modal";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
 import styles from "./styles";
 import { Button, LoadingIndicator } from "../../components";
+import { wait } from "../../utils";
 import { login } from "../../redux/actions";
 
 const LoginPage = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const { auth } = useSelector(
     (state) => ({
       auth: state.auth,
@@ -23,12 +21,17 @@ const LoginPage = () => {
     shallowEqual,
   );
 
-  const LoginForm = () => {
-    dispatch(login({ email: email, password: password }));
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    if (auth.token) {
+  const LoginForm = () => {
+    dispatch(login({ email: email, password: password, cb: onSuccessLogin() }));
+  };
+
+  const onSuccessLogin = () => {
+    wait(500).then(() => {
       navigation.navigate("Home");
-    }
+    });
   };
 
   return (
@@ -73,9 +76,9 @@ const LoginPage = () => {
       </KeyboardAwareScrollView>
 
       {/* Modal Login */}
-      {/* <Modal isVisible={auth.isLoadingLogin}>
+      <Modal isVisible={auth.isLoadingLogin}>
         <LoadingIndicator />
-      </Modal> */}
+      </Modal>
     </SafeAreaView>
   );
 };
