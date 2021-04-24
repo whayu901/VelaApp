@@ -4,18 +4,29 @@ import {
   Text,
   Animated,
   TouchableOpacity,
+  Linking,
   SafeAreaView,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { Button } from "react-native-paper";
 import DateTimePicker from "react-native-modal-datetime-picker";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 
 import { Colors } from "../../config";
-
-import styles from "./styles";
+import { baseUrl } from "../../utils";
+import { reportBarang } from "../../redux/actions";
 
 const Laporan = () => {
+  const dispatch = useDispatch();
+
+  const { barang } = useSelector(
+    (state) => ({
+      barang: state.barang,
+    }),
+    shallowEqual,
+  );
+
   const [isVisibleBarangMasuk, setVisibleBarangMasuk] = useState(false);
   const [isVisibleBarangKeluar, setVisibleBarangKeluar] = useState(false);
   const [tanggalMulaiBarangMasuk, setTanggalMulaiBarangMasuk] = useState(
@@ -46,6 +57,33 @@ const Laporan = () => {
     isVisibleDateSelesaiBarangKeluar,
     setVisibleDateSelesaiBarangKeluar,
   ] = useState(false);
+
+  const _reportBarangMasuk = async () => {
+    // dispatch()
+    const mulai = moment(tanggalMulaiBarangMasuk).format("YYYY-MM-DD");
+    const selesai = moment(tanggalSelesaiBarangMasuk).format("YYYY-MM-DD");
+    const type = "in";
+    await dispatch(
+      reportBarang({ tglMulai: mulai, tglSelesai: selesai, type }),
+    );
+
+    if (barang?.dataReport) {
+      Linking.openURL(`${baseUrl.URL_IMG}${barang?.dataReport.link}`);
+    }
+  };
+
+  const _reportBarangKeluar = async () => {
+    const mulai = moment(tanggalMulaiBarangKeluar).format("YYYY-MM-DD");
+    const selesai = moment(tanggalSelesaiBarangKeluar).format("YYYY-MM-DD");
+    const type = "out";
+    await dispatch(
+      reportBarang({ tglMulai: mulai, tglSelesai: selesai, type }),
+    );
+
+    if (barang?.dataReport) {
+      Linking.openURL(`${baseUrl.URL_IMG}${barang?.dataReport.link}`);
+    }
+  };
 
   return (
     <SafeAreaView>
@@ -111,7 +149,10 @@ const Laporan = () => {
               </View>
 
               <View style={{ marginHorizontal: 30, marginTop: 20 }}>
-                <Button icon="download" mode="contained">
+                <Button
+                  icon="download"
+                  mode="contained"
+                  onPress={() => _reportBarangMasuk()}>
                   Download
                 </Button>
               </View>
@@ -185,7 +226,10 @@ const Laporan = () => {
               </View>
 
               <View style={{ marginHorizontal: 30, marginTop: 20 }}>
-                <Button icon="download" mode="contained">
+                <Button
+                  icon="download"
+                  mode="contained"
+                  onPress={() => _reportBarangKeluar()}>
                   Download
                 </Button>
               </View>

@@ -102,6 +102,7 @@ const DetailBarang = () => {
               style={{ height: 170, justifyContent: "center", marginTop: 20 }}>
               {imgBarang == "" ? (
                 <TouchableOpacity
+                  disabled={route.params.isDetail ? false : true}
                   onPress={() =>
                     navigation.navigate("Kamera", {
                       onGoBack: (value) => setImgBarang(value),

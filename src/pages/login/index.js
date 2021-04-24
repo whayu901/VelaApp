@@ -24,8 +24,10 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const LoginForm = () => {
-    dispatch(login({ email: email, password: password, cb: onSuccessLogin() }));
+  const LoginForm = async () => {
+    await dispatch(
+      login({ email: email, password: password, cb: onSuccessLogin() }),
+    );
   };
 
   const onSuccessLogin = () => {
