@@ -114,7 +114,10 @@ export const tambahBarang = ({ data }) => async (dispatch, getState) => {
   }
 };
 
-export const keluarBarang = ({ data, id }) => async (dispatch, getState) => {
+export const keluarBarang = ({ data, id, cb }) => async (
+  dispatch,
+  getState,
+) => {
   try {
     const { token } = getState().auth;
     dispatch({ type: "KELUAR_BARANG_PENDING" });
@@ -126,6 +129,7 @@ export const keluarBarang = ({ data, id }) => async (dispatch, getState) => {
       token,
     });
     dispatch({ type: "KELUAR_BARANG_SUCCESS" });
+    cb();
   } catch (error) {
     if (error.response) {
       alert(error.response.data.message);
@@ -134,7 +138,7 @@ export const keluarBarang = ({ data, id }) => async (dispatch, getState) => {
   }
 };
 
-export const reportBarang = ({ type, tglMulai, tglSelesai }) => async (
+export const reportBarang = ({ type, tglMulai, tglSelesai, cb }) => async (
   dispatch,
   getState,
 ) => {
@@ -156,6 +160,7 @@ export const reportBarang = ({ type, tglMulai, tglSelesai }) => async (
         data: response.data,
       },
     });
+    cb();
   } catch (error) {
     if (error.response) {
       alert(error.response.data.message);

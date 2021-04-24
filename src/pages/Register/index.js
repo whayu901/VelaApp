@@ -40,7 +40,9 @@ const LoginPage = () => {
   ];
 
   const RegisterConfirm = async () => {
-    await dispatch(register({ data: registerForm, cb: onSuccessRegister() }));
+    await dispatch(
+      register({ data: registerForm, cb: () => onSuccessRegister() }),
+    );
   };
 
   const onSuccessRegister = () => {

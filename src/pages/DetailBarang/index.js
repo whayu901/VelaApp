@@ -69,8 +69,9 @@ const DetailBarang = () => {
       amount: hargaBarang.toString(),
       photo: imgBarang,
     };
-    await dispatch(editBarang({ id: route.params.id, data }));
-    setVisible(true);
+    await dispatch(
+      editBarang({ id: route.params.id, data, cb: () => setVisible(true) }),
+    );
   };
 
   const _pressButton = (value) => {
@@ -85,8 +86,9 @@ const DetailBarang = () => {
     const data = {
       quantity: jumlahBarang,
     };
-    await dispatch(keluarBarang());
-    setVisible(true);
+    await dispatch(
+      keluarBarang({ data, id: route.params.id, cb: () => setVisible(true) }),
+    );
   };
 
   return (

@@ -35,47 +35,67 @@ const HomeScreen = () => {
           <Text style={{ fontSize: 20 }}>Hi, {auth.name}</Text>
         </View>
 
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginHorizontal: 25,
-            marginTop: 100,
-          }}>
+        {auth?.role == 1 ? (
           <View>
-            <CardMenu
-              title="List Barang"
-              onPress={() => navigation.navigate("ListBarang")}
-            />
-          </View>
-          <View>
-            <CardMenu
-              title="Barang Masuk"
-              onPress={() => navigation.navigate("BarangMasuk")}
-            />
-          </View>
-        </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                marginHorizontal: 25,
+                marginTop: 100,
+              }}>
+              <View>
+                <CardMenu
+                  title="List Barang"
+                  onPress={() => navigation.navigate("ListBarang")}
+                />
+              </View>
+              <View>
+                <CardMenu
+                  title="Barang Masuk"
+                  onPress={() => navigation.navigate("BarangMasuk")}
+                />
+              </View>
+            </View>
 
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginHorizontal: 25,
-            marginTop: 25,
-          }}>
-          <View>
-            <CardMenu
-              title="Barang Keluar"
-              onPress={() => navigation.navigate("BarangKeluar")}
-            />
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                marginHorizontal: 25,
+                marginTop: 25,
+              }}>
+              <View>
+                <CardMenu
+                  title="Barang Keluar"
+                  onPress={() => navigation.navigate("BarangKeluar")}
+                />
+              </View>
+              <View>
+                <CardMenu
+                  title="Laporan"
+                  onPress={() => navigation.navigate("Laporan")}
+                />
+              </View>
+            </View>
           </View>
-          <View>
-            <CardMenu
-              title="Laporan"
-              onPress={() => navigation.navigate("Laporan")}
-            />
+        ) : (
+          <View
+            style={{
+              alignSelf: "center",
+              alignItems: "center",
+              justifyContent: "center",
+              marginHorizontal: 25,
+              marginTop: 120,
+            }}>
+            <View>
+              <CardMenu
+                title="Laporan"
+                onPress={() => navigation.navigate("Laporan")}
+              />
+            </View>
           </View>
-        </View>
+        )}
       </View>
     </SafeAreaView>
   );

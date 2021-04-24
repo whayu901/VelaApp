@@ -64,9 +64,16 @@ const Laporan = () => {
     const selesai = moment(tanggalSelesaiBarangMasuk).format("YYYY-MM-DD");
     const type = "in";
     await dispatch(
-      reportBarang({ tglMulai: mulai, tglSelesai: selesai, type }),
+      reportBarang({
+        tglMulai: mulai,
+        tglSelesai: selesai,
+        type,
+        cb: () => _displayPDF(),
+      }),
     );
+  };
 
+  const _displayPDF = () => {
     if (barang?.dataReport) {
       Linking.openURL(`${baseUrl.URL_IMG}${barang?.dataReport.link}`);
     }
@@ -77,7 +84,12 @@ const Laporan = () => {
     const selesai = moment(tanggalSelesaiBarangKeluar).format("YYYY-MM-DD");
     const type = "out";
     await dispatch(
-      reportBarang({ tglMulai: mulai, tglSelesai: selesai, type }),
+      reportBarang({
+        tglMulai: mulai,
+        tglSelesai: selesai,
+        type,
+        cb: () => _displayPDF(),
+      }),
     );
 
     if (barang?.dataReport) {

@@ -26,7 +26,7 @@ const LoginPage = () => {
 
   const LoginForm = async () => {
     await dispatch(
-      login({ email: email, password: password, cb: onSuccessLogin() }),
+      login({ email: email, password: password, cb: () => onSuccessLogin() }),
     );
   };
 

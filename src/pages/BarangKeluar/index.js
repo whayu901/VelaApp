@@ -53,7 +53,6 @@ const BarangKeluar = () => {
       <View style={{ marginHorizontal: 10, marginTop: 5 }}>
         <Searchbar
           placeholder="Cari Disini"
-          // clearIcon="close"
           onChangeText={(cari) => setSearch(cari)}
           onSubmitEditing={() => _searchBarang()}
         />
