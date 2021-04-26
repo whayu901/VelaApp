@@ -8,7 +8,7 @@ const initialState = {
   isLoadingDelete: false,
   isLoadingTambah: false,
   isLoadingReport: false,
-  dataReport: null,
+  dataReport: "",
   isLoadingKeluar: false,
 };
 
@@ -58,7 +58,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoadingReport: false,
-        dataReport: action.payload.data,
+        dataReport: action.payload.dataReport,
       };
     case "GET_REPORT_ERROR":
       return { ...state, isLoadingReport: false };

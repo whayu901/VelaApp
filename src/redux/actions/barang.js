@@ -154,13 +154,15 @@ export const reportBarang = ({ type, tglMulai, tglSelesai, cb }) => async (
       url,
       token,
     });
+
+    console.log(response.data);
     dispatch({
       type: "GET_REPORT_SUCCESS",
       payload: {
-        data: response.data,
+        dataReport: response.data.link,
       },
     });
-    cb();
+    cb(response.data.link);
   } catch (error) {
     if (error.response) {
       alert(error.response.data.message);

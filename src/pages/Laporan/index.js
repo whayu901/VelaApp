@@ -68,15 +68,13 @@ const Laporan = () => {
         tglMulai: mulai,
         tglSelesai: selesai,
         type,
-        cb: () => _displayPDF(),
+        cb: (e) => _displayPDF(e),
       }),
     );
   };
 
-  const _displayPDF = () => {
-    if (barang?.dataReport) {
-      Linking.openURL(`${baseUrl.URL_IMG}${barang?.dataReport.link}`);
-    }
+  const _displayPDF = (link) => {
+    Linking.openURL(`${baseUrl.URL_IMG}${link}`);
   };
 
   const _reportBarangKeluar = async () => {
@@ -88,13 +86,9 @@ const Laporan = () => {
         tglMulai: mulai,
         tglSelesai: selesai,
         type,
-        cb: () => _displayPDF(),
+        cb: (e) => _displayPDF(e),
       }),
     );
-
-    if (barang?.dataReport) {
-      Linking.openURL(`${baseUrl.URL_IMG}${barang?.dataReport.link}`);
-    }
   };
 
   return (
