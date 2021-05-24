@@ -200,20 +200,6 @@ const Laporan = () => {
                   justifyContent: "space-around",
                 }}>
                 <View>
-                  <Text>Pilih Tanggal Masuk</Text>
-                  <TouchableOpacity
-                    onPress={() => setVisibleDateMulaiBarangKeluar(true)}>
-                    <Text
-                      style={{
-                        textAlign: "center",
-                        fontSize: 12,
-                        color: Colors.black0,
-                      }}>
-                      {moment(tanggalMulaiBarangKeluar).format("DD MMMM YYYY")}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                <View>
                   <Text>Pilih Tanggal Keluar</Text>
                   <TouchableOpacity
                     onPress={() => setVisibleDateSelesaiBarangKeluar(true)}>
@@ -226,6 +212,20 @@ const Laporan = () => {
                       {moment(tanggalSelesaiBarangKeluar).format(
                         "DD MMMM YYYY",
                       )}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  <Text>Pilih Tanggal Masuk</Text>
+                  <TouchableOpacity
+                    onPress={() => setVisibleDateMulaiBarangKeluar(true)}>
+                    <Text
+                      style={{
+                        textAlign: "center",
+                        fontSize: 12,
+                        color: Colors.black0,
+                      }}>
+                      {moment(tanggalMulaiBarangKeluar).format("DD MMMM YYYY")}
                     </Text>
                   </TouchableOpacity>
                 </View>
