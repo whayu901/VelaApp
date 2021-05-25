@@ -9,6 +9,11 @@ import { CardMenu } from "../../components";
 import { Colors } from "../../config";
 import { logout } from "../../redux/actions";
 
+import InImage from "../../../assets/in.png";
+import LaporanImage from "../../../assets/laporan.png";
+import ListImage from "../../../assets/list.png";
+import OutImage from "../../../assets/out.png";
+
 const HomeScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -67,12 +72,14 @@ const HomeScreen = () => {
             <View>
               <CardMenu
                 title="List Barang"
+                img={ListImage}
                 onPress={() => navigation.navigate("ListBarang")}
               />
             </View>
             <View>
               <CardMenu
                 title="Barang Masuk"
+                img={InImage}
                 onPress={() => navigation.navigate("BarangMasuk")}
               />
             </View>
@@ -88,12 +95,14 @@ const HomeScreen = () => {
             <View>
               <CardMenu
                 title="Barang Keluar"
+                img={OutImage}
                 onPress={() => navigation.navigate("BarangKeluar")}
               />
             </View>
             <View>
               <CardMenu
                 title="Laporan"
+                img={LaporanImage}
                 onPress={() => navigation.navigate("Laporan")}
               />
             </View>
@@ -111,6 +120,7 @@ const HomeScreen = () => {
           <View>
             <CardMenu
               title="Laporan"
+              img={LaporanImage}
               onPress={() => navigation.navigate("Laporan")}
             />
           </View>

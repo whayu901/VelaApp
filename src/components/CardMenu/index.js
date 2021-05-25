@@ -1,9 +1,9 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 
 import styles from "./styles";
 
-const CardMenu = ({ title, onPress }) => {
+const CardMenu = ({ title, onPress, img }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View
@@ -13,6 +13,11 @@ const CardMenu = ({ title, onPress }) => {
           justifyContent: "center",
           flex: 1,
         }}>
+        <Image
+          style={{ width: 80, height: 80 }}
+          resizeMode="contain"
+          source={img}
+        />
         <Text style={styles.textMenu}>{title}</Text>
       </View>
     </TouchableOpacity>

@@ -4,8 +4,8 @@ import { Colors } from "../../config";
 
 const styles = StyleSheet.create({
   container: {
-    width: 140,
-    height: 100,
+    width: 160,
+    height: 140,
     backgroundColor: Colors.white,
     borderRadius: 10,
     shadowColor: "#000",
