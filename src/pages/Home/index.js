@@ -69,7 +69,7 @@ const HomeScreen = () => {
               marginHorizontal: 25,
               marginTop: 100,
             }}>
-            <View>
+            <View style={{ marginRight: 15 }}>
               <CardMenu
                 title="List Barang"
                 img={ListImage}
@@ -92,7 +92,7 @@ const HomeScreen = () => {
               marginHorizontal: 25,
               marginTop: 25,
             }}>
-            <View>
+            <View style={{ marginRight: 15 }}>
               <CardMenu
                 title="Barang Keluar"
                 img={OutImage}
