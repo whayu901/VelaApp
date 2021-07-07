@@ -28,7 +28,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoadingRegister: false,
-        isLogin: true,
         token: action.payload.token,
         role: action.payload.role,
         name: action.payload.name,

@@ -11,7 +11,7 @@ import styles from "./styles";
 import { Button, LoadingIndicator } from "../../components";
 import { register } from "../../redux/actions";
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const { auth } = useSelector(
@@ -27,6 +27,7 @@ const LoginPage = () => {
     role_id: "",
     email: "",
   });
+  const [isVisibleSuccess, setVisibleSuccess] = useState(false);
 
   const Role = [
     {
@@ -46,7 +47,9 @@ const LoginPage = () => {
   };
 
   const onSuccessRegister = () => {
-    navigation.navigate("Home");
+    setTimeout(() => {
+      setVisibleSuccess(true);
+    }, 1000);
   };
 
   return (
@@ -129,8 +132,26 @@ const LoginPage = () => {
       <Modal isVisible={auth.isLoadingRegister}>
         <LoadingIndicator />
       </Modal>
+
+      {/* Modal Success Register */}
+      <Modal isVisible={isVisibleSuccess}>
+        <View style={{ backgroundColor: "#fff", borderRadius: 10 }}>
+          <View style={{ marginVertical: 40 }}>
+            <Text style={{ fontSize: 16, textAlign: "center" }}>
+              Anda Berhasil Registasi. Silahkan Login
+            </Text>
+          </View>
+          <Button
+            text={"Done"}
+            onPress={() => {
+              setVisibleSuccess(false);
+              navigation.navigate("Login");
+            }}
+          />
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

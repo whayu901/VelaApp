@@ -10,7 +10,6 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import IconDelete from "react-native-vector-icons/Ionicons";
 import { TextInput } from "react-native-paper";
-import { TextInputMask } from "react-native-masked-text";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import Modal from "react-native-modal";
 
@@ -36,13 +35,6 @@ const BarangMasuk = () => {
   );
 
   const _tambahBarang = async () => {
-    // const data = {
-    //   name: namaBarang,
-    //   quantity: jumlahBarang,
-    //   amount: hargaBarang,
-    //   photo: imgBarang,
-    // };
-
     const data = new FormData();
     data.append("name", namaBarang);
     data.append("quantity", jumlahBarang);

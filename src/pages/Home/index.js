@@ -1,5 +1,11 @@
 import React from "react";
-import { SafeAreaView, View, Text, TouchableOpacity } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import Svg, { Path } from "react-native-svg";
@@ -61,7 +67,7 @@ const HomeScreen = () => {
       </View>
 
       {auth?.role == 1 ? (
-        <View>
+        <ScrollView>
           <View
             style={{
               flexDirection: "row",
@@ -107,7 +113,16 @@ const HomeScreen = () => {
               />
             </View>
           </View>
-        </View>
+
+          {/* Tolong Hapus yang disini */}
+          {/* <View style={{ marginLeft: 15, marginTop: 10 }}>
+            <CardMenu
+              title="Laporan"
+              img={LaporanImage}
+              onPress={() => navigation.navigate("Laporan")}
+            />
+          </View> */}
+        </ScrollView>
       ) : (
         <View
           style={{
