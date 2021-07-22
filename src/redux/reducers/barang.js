@@ -10,6 +10,10 @@ const initialState = {
   isLoadingReport: false,
   dataReport: "",
   isLoadingKeluar: false,
+  isLoadingRak: false,
+  dataRak: [],
+  isLoadingWarehouse: false,
+  dataWarehouse: [],
 };
 
 export default (state = initialState, action) => {
@@ -68,6 +72,31 @@ export default (state = initialState, action) => {
       return { ...state, isLoadingKeluar: false };
     case "KELUAR_BARANG_ERROR":
       return { ...state, isLoadingKeluar: false };
+    case "GET_RAK_PENDING":
+      return { ...state, isLoadingRak: true };
+    case "GET_RAK_SUCCESS":
+      dataRak = [];
+      payload.data.map((item) => {
+        dataRak = [...dataRak, { value: item.id, label: item.name }];
+        return true;
+      });
+      return { ...state, isLoadingRak: false, dataRak };
+    case "GET_RAK_ERROR":
+      return { ...state, isLoadingRak: false };
+    case "GET_WAREHOUSE_PENDING":
+      return { ...state, isLoadingWarehouse: true };
+    case "GET_WAREHOUSE_SUCCESS":
+      dataWarehouse = [];
+      payload.data.map((item) => {
+        dataWarehouse = [
+          ...dataWarehouse,
+          { value: item.id, label: item.rack_name },
+        ];
+        return true;
+      });
+      return { ...state, isLoadingWarehouse: false, dataRak };
+    case "GET_WAREHOUSE_ERROR":
+      return { ...state, isLoadingWarehouse: false };
     default:
       return state;
   }

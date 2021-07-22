@@ -155,7 +155,6 @@ export const reportBarang = ({ type, tglMulai, tglSelesai, cb }) => async (
       token,
     });
 
-    console.log(response.data);
     dispatch({
       type: "GET_REPORT_SUCCESS",
       payload: {
@@ -167,6 +166,59 @@ export const reportBarang = ({ type, tglMulai, tglSelesai, cb }) => async (
     if (error.response) {
       alert(error.response.data.message);
       dispatch({ type: "GET_REPORT_ERROR" });
+    }
+  }
+};
+
+export const getRak = ({ id }) => async (dispatch, getState) => {
+  try {
+    const { token } = getState().auth;
+    dispatch({ type: "GET_RAK_PENDING" });
+
+    const url = `${baseUrl.API_URL}rack`;
+    let response = await axios.Get({
+      params: {
+        warehouse_id: id,
+      },
+      url,
+      token,
+    });
+
+    dispatch({
+      type: "GET_RAK_SUCCESS",
+      payload: {
+        data: response.data,
+      },
+    });
+  } catch (error) {
+    if (error.response) {
+      alert(error.response.data.message);
+      dispatch({ type: "GET_RAK_ERROR" });
+    }
+  }
+};
+
+export const getWarehouse = () => async (dispatch, getState) => {
+  try {
+    const { token } = getState().auth;
+    dispatch({ type: "GET_WAREHOUSE_PENDING" });
+
+    const url = `${baseUrl.API_URL}warehouse`;
+    let response = await axios.Get({
+      url,
+      token,
+    });
+
+    dispatch({
+      type: "GET_WAREHOUSE_SUCCESS",
+      payload: {
+        data: response.data,
+      },
+    });
+  } catch (error) {
+    if (error.response) {
+      alert(error.response.data.message);
+      dispatch({ type: "GET_WAREHOUSE_ERROR" });
     }
   }
 };
