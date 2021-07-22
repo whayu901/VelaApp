@@ -14,7 +14,13 @@ const initialState = {
   dataRak: [],
   isLoadingWarehouse: false,
   dataWarehouse: [],
+  isLoadingDefact: false,
+  dataDefact: [],
+  isLoadingTambahBarangDefact: false,
 };
+
+let dataRak = [];
+let dataWarehouse = [];
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -76,8 +82,8 @@ export default (state = initialState, action) => {
       return { ...state, isLoadingRak: true };
     case "GET_RAK_SUCCESS":
       dataRak = [];
-      payload.data.map((item) => {
-        dataRak = [...dataRak, { value: item.id, label: item.name }];
+      action.payload.data.map((item) => {
+        dataRak = [...dataRak, { value: item.id, label: item.rack_name }];
         return true;
       });
       return { ...state, isLoadingRak: false, dataRak };
@@ -87,16 +93,30 @@ export default (state = initialState, action) => {
       return { ...state, isLoadingWarehouse: true };
     case "GET_WAREHOUSE_SUCCESS":
       dataWarehouse = [];
-      payload.data.map((item) => {
+      action.payload.data.map((item) => {
         dataWarehouse = [
           ...dataWarehouse,
-          { value: item.id, label: item.rack_name },
+          { value: item.id, label: item.name },
         ];
         return true;
       });
-      return { ...state, isLoadingWarehouse: false, dataRak };
+      return { ...state, isLoadingWarehouse: false, dataWarehouse };
     case "GET_WAREHOUSE_ERROR":
       return { ...state, isLoadingWarehouse: false };
+    case "GET_DEFACT_PENDING":
+      return { ...state, isLoadingDefact: true };
+    case "GET_DEFACT_SUCCESS":
+      return {
+        ...state,
+        isLoadingDefact: false,
+        dataDefact: action.payload.data,
+      };
+    case "POST_DEFACT_BARANG_PENDING":
+      return { ...state, isLoadingTambahBarangDefact: true };
+    case "POST_DEFACT_BARANG_SUCCESS":
+      return { ...state, isLoadingTambahBarangDefact: false };
+    case "POST_DEFACT_BARANG_ERROR":
+      return { ...state, isLoadingTambahBarangDefact: false };
     default:
       return state;
   }

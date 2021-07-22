@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import { getListBarang } from "../../redux/actions";
 import { CardBarang, LoadingIndicator } from "../../components";
 
-const BarangKeluar = () => {
+const BarangDefact = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [tempData, setTempData] = useState([]);
@@ -64,7 +64,7 @@ const BarangKeluar = () => {
             <CardBarang
               isBarangKeluar
               onPressKeluar={() => {
-                navigation.navigate("Detail", { id: item.id });
+                navigation.navigate("Detail", { id: item.id, isDefact: true });
               }}
               harga={item.amount}
               name={item.name}
@@ -77,4 +77,4 @@ const BarangKeluar = () => {
   );
 };
 
-export default BarangKeluar;
+export default BarangDefact;

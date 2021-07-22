@@ -19,6 +19,7 @@ import InImage from "../../../assets/in.png";
 import LaporanImage from "../../../assets/laporan.png";
 import ListImage from "../../../assets/list.png";
 import OutImage from "../../../assets/out.png";
+import DefactImage from "../../../assets/defact.png";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -79,7 +80,9 @@ const HomeScreen = () => {
               <CardMenu
                 title="List Barang"
                 img={ListImage}
-                onPress={() => navigation.navigate("ListBarang")}
+                onPress={() =>
+                  navigation.navigate("ListBarang", { type: "detail" })
+                }
               />
             </View>
             <View>
@@ -115,13 +118,15 @@ const HomeScreen = () => {
           </View>
 
           {/* Tolong Hapus yang disini */}
-          {/* <View style={{ marginLeft: 15, marginTop: 10 }}>
+          <View style={{ marginLeft: 25, marginVertical: 25 }}>
             <CardMenu
-              title="Laporan"
-              img={LaporanImage}
-              onPress={() => navigation.navigate("Laporan")}
+              title="Defact"
+              img={DefactImage}
+              onPress={() =>
+                navigation.navigate("ListBarang", { type: "defact" })
+              }
             />
-          </View> */}
+          </View>
         </ScrollView>
       ) : (
         <View

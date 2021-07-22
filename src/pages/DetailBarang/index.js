@@ -16,14 +16,18 @@ import {
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import IconDelete from "react-native-vector-icons/Ionicons";
 import { TextInput } from "react-native-paper";
-// import { TextInputMask } from "react-native-masked-text";
 import Modal from "react-native-modal";
 
 import styles from "./styles";
 import { Button, LoadingIndicator } from "../../components";
 import { Colors } from "../../config";
 import { baseUrl } from "../../utils";
-import { getDetailBarang, editBarang, keluarBarang } from "../../redux/actions";
+import {
+  getDetailBarang,
+  editBarang,
+  keluarBarang,
+  tambahBarangDefact,
+} from "../../redux/actions";
 
 const DetailBarang = () => {
   const route = useRoute();
@@ -38,9 +42,12 @@ const DetailBarang = () => {
   );
 
   const [namaBarang, setNamaBarang] = useState("");
+  const [idBarang, setIdBarang] = useState("");
   const [jumlahBarang, setJumlahBarang] = useState("");
   const [hargaBarang, setHargaBarang] = useState("");
   const [imgBarang, setImgBarang] = useState("");
+  const [warehouse, setWarehouse] = useState("");
+  const [rak, setRak] = useState("");
   const [visible, setVisible] = useState(false);
 
   useFocusEffect(
@@ -51,9 +58,12 @@ const DetailBarang = () => {
 
   useEffect(() => {
     if (barang?.dataDetailBarang) {
+      setIdBarang(route.params.id);
       setJumlahBarang(barang?.dataDetailBarang?.quantity);
       setNamaBarang(barang?.dataDetailBarang?.name);
       setHargaBarang(barang?.dataDetailBarang?.amount);
+      setWarehouse(barang?.dataDetailBarang?.warehouse_name);
+      setRak(barang?.dataDetailBarang?.rack_name);
       setImgBarang(
         barang?.dataDetailBarang?.photo !== ""
           ? `${baseUrl.URL_IMG}${barang?.dataDetailBarang?.photo}`
@@ -74,9 +84,24 @@ const DetailBarang = () => {
     );
   };
 
+  const _defactBarang = async () => {
+    const data = {
+      quantity: jumlahBarang,
+    };
+    await dispatch(
+      tambahBarangDefact({
+        data,
+        id: route.params.id,
+        cb: () => setVisible(true),
+      }),
+    );
+  };
+
   const _pressButton = (value) => {
     if (route.params.isDetail) {
       _editBarang(value);
+    } else if (route.params.isDefact) {
+      _defactBarang();
     } else {
       _keluarBarang();
     }
@@ -132,6 +157,15 @@ const DetailBarang = () => {
 
             <View style={styles.inputContainer}>
               <TextInput
+                disabled
+                label="Id Barang"
+                mode="outlined"
+                value={idBarang.toString()}
+              />
+            </View>
+
+            <View style={styles.inputContainer}>
+              <TextInput
                 disabled={route.params.isDetail ? false : true}
                 label="Nama Barang"
                 mode="outlined"
@@ -162,27 +196,31 @@ const DetailBarang = () => {
                 keyboardType={"numeric"}
                 value={hargaBarang.toString()}
                 onChangeText={(hargaBarang) => setHargaBarang(hargaBarang)}
-                // render={(props) => (
-                //   <TextInputMask
-                //     {...props}
-                //     type={"money"}
-                //     options={{
-                //       precision: 0,
-                //       separator: ",",
-                //       delimiter: ".",
-                //       unit: "Rp.",
-                //       suffixUnit: "",
-                //     }}
-                //   />
-                // )}
               />
             </View>
 
-            <View style={{ marginHorizontal: 10 }}>
+            <View style={styles.inputContainer}>
+              <TextInput disabled label="Rak" mode="outlined" value={rak} />
+            </View>
+
+            <View style={styles.inputContainer}>
+              <TextInput
+                disabled
+                label="Gudang"
+                mode="outlined"
+                value={warehouse}
+              />
+            </View>
+
+            <View style={{ margin: 10 }}>
               <Button
                 onPress={() => _pressButton()}
                 text={
-                  route.params.isDetail ? "Edit Barang" : "Keluarkan Barang"
+                  route.params.isDetail
+                    ? "Edit Barang"
+                    : route.params.isDefact
+                    ? "Tambah Defact"
+                    : "Keluarkan Barang"
                 }
               />
             </View>
@@ -195,6 +233,8 @@ const DetailBarang = () => {
             <Text style={{ fontSize: 16, textAlign: "center" }}>
               {route.params.isDetail
                 ? "Berhasil Mengubah Data Barang"
+                : route.params.isDefact
+                ? "Berhasil Tambah Defact"
                 : "Berhasil Mengeluarkan Barang"}
             </Text>
           </View>

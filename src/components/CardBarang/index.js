@@ -9,9 +9,11 @@ const CardBarang = ({
   onPress,
   qty,
   name,
+  id,
   harga,
   onPressDelete,
   onPressKeluar,
+  isDefact,
   isBarangKeluar,
 }) => {
   return (
@@ -33,22 +35,31 @@ const CardBarang = ({
         )}`}</Text>
       </View>
 
+      <View>
+        <Text style={{ fontSize: 16, fontWeight: "bold" }}>ID</Text>
+        <Text style={{ textAlign: "center" }}>{id}</Text>
+      </View>
+
       {isBarangKeluar ? (
         <TouchableOpacity style={{ paddingTop: 10 }} onPress={onPressKeluar}>
           <Text style={styles.pilihtext}>Pilih</Text>
         </TouchableOpacity>
       ) : (
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <TouchableOpacity
-            style={{ paddingTop: 10, marginHorizontal: 20 }}
-            onPress={onPress}>
-            <IconPencil name="ios-pencil" size={20} />
-          </TouchableOpacity>
+        !isDefact && (
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <TouchableOpacity
+              style={{ paddingTop: 10, marginHorizontal: 20 }}
+              onPress={onPress}>
+              <IconPencil name="ios-pencil" size={20} />
+            </TouchableOpacity>
 
-          <TouchableOpacity style={{ paddingTop: 10 }} onPress={onPressDelete}>
-            <IconPencil name="ios-close" size={25} />
-          </TouchableOpacity>
-        </View>
+            <TouchableOpacity
+              style={{ paddingTop: 10 }}
+              onPress={onPressDelete}>
+              <IconPencil name="ios-close" size={25} />
+            </TouchableOpacity>
+          </View>
+        )
       )}
     </View>
   );

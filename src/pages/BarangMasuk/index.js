@@ -12,10 +12,11 @@ import IconDelete from "react-native-vector-icons/Ionicons";
 import { TextInput } from "react-native-paper";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import Modal from "react-native-modal";
+import DropDownPicker from "react-native-dropdown-picker";
 
 import styles from "./styles";
 import { Button, LoadingIndicator } from "../../components";
-import { tambahBarang } from "../../redux/actions";
+import { tambahBarang, getRak, getWarehouse } from "../../redux/actions";
 
 const BarangMasuk = () => {
   const navigation = useNavigation();
@@ -25,6 +26,8 @@ const BarangMasuk = () => {
   const [jumlahBarang, setJumlahBarang] = useState("");
   const [hargaBarang, setHargaBarang] = useState("");
   const [imgBarang, setImgBarang] = useState("");
+  const [idWarehouse, setIdWarehouse] = useState("");
+  const [idRak, setIdRak] = useState("");
   const [visible, setVisible] = useState(false);
 
   const { barang } = useSelector(
@@ -33,6 +36,10 @@ const BarangMasuk = () => {
     }),
     shallowEqual,
   );
+
+  useEffect(() => {
+    dispatch(getWarehouse());
+  }, []);
 
   const _tambahBarang = async () => {
     const data = new FormData();
@@ -47,6 +54,11 @@ const BarangMasuk = () => {
 
     await dispatch(tambahBarang({ data }));
     setVisible(true);
+  };
+
+  const _showRackAvailable = async (value) => {
+    setIdWarehouse(value);
+    await dispatch(getRak({ id: value }));
   };
 
   return (
@@ -105,23 +117,62 @@ const BarangMasuk = () => {
             placeholder={"Masukan Harga Barang"}
             value={hargaBarang}
             onChangeText={(hargaBarang) => setHargaBarang(hargaBarang)}
-            // render={(props) => (
-            //   <TextInputMask
-            //     {...props}
-            //     type={"money"}
-            //     options={{
-            //       precision: 0,
-            //       separator: ",",
-            //       delimiter: ".",
-            //       unit: "Rp.",
-            //       suffixUnit: "",
-            //     }}
-            //   />
-            // )}
           />
         </View>
 
-        <View style={{ marginHorizontal: 10 }}>
+        <View style={{ width: "100%" }}>
+          <DropDownPicker
+            items={barang?.dataWarehouse}
+            defaultValue={idWarehouse}
+            placeholder={"Pilih Gudang"}
+            containerStyle={{
+              height: 55,
+              margin: 10,
+            }}
+            style={{
+              backgroundColor: "#fafafa",
+              borderColor: "#515151",
+              borderWidth: 1,
+            }}
+            itemStyle={{
+              justifyContent: "flex-start",
+            }}
+            dropDownStyle={{
+              backgroundColor: "#fafafa",
+            }}
+            onChangeItem={(item) => {
+              _showRackAvailable(item.value);
+            }}
+          />
+        </View>
+
+        <View style={{ width: "100%" }}>
+          <DropDownPicker
+            items={barang?.dataRak}
+            defaultValue={idRak}
+            placeholder={"Pilih Rak"}
+            containerStyle={{
+              height: 55,
+              margin: 10,
+            }}
+            style={{
+              backgroundColor: "#fafafa",
+              borderColor: "#515151",
+              borderWidth: 1,
+            }}
+            itemStyle={{
+              justifyContent: "flex-start",
+            }}
+            dropDownStyle={{
+              backgroundColor: "#fafafa",
+            }}
+            onChangeItem={(item) => {
+              setIdRak(item.value);
+            }}
+          />
+        </View>
+
+        <View style={{ marginVertical: 20, marginHorizontal: 10 }}>
           <Button text={"Tambah"} onPress={() => _tambahBarang()} />
         </View>
       </ScrollView>

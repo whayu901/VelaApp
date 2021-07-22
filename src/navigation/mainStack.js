@@ -11,6 +11,7 @@ import BarangMasukScreen from "../pages/BarangMasuk";
 import DetailScreen from "../pages/DetailBarang";
 import LaporanScreen from "../pages/Laporan";
 import BarangKeluarScreen from "../pages/BarangKeluar";
+import BarangDefactScreen from "../pages/BarangDefact";
 
 import CameraScreen from "../pages/Camera";
 
@@ -41,6 +42,7 @@ export default AuthStack = () => {
       <Stack.Screen name="Kamera" component={CameraScreen} />
       <Stack.Screen name="Detail" component={DetailScreen} />
       <Stack.Screen name="Laporan" component={LaporanScreen} />
+      <Stack.Screen name="Defact" component={BarangDefactScreen} />
     </Stack.Navigator>
   );
 };

@@ -222,3 +222,53 @@ export const getWarehouse = () => async (dispatch, getState) => {
     }
   }
 };
+
+export const getBarangDefact = () => async (dispatch, getState) => {
+  try {
+    const { token } = getState().auth;
+    dispatch({ type: "GET_DEFACT_PENDING" });
+
+    const url = `${baseUrl.API_URL}item/defect`;
+    let response = await axios.Get({
+      url,
+      token,
+    });
+
+    dispatch({
+      type: "GET_DEFACT_SUCCESS",
+      payload: {
+        data: response.data,
+      },
+    });
+  } catch (error) {
+    if (error.response) {
+      alert(error.response.data.message);
+      dispatch({ type: "GET_DEFACT_ERROR" });
+    }
+  }
+};
+
+export const tambahBarangDefact = ({ data, id, cb }) => async (
+  dispatch,
+  getState,
+) => {
+  try {
+    const { token } = getState().auth;
+    dispatch({ type: "POST_DEFACT_BARANG_PENDING" });
+
+    const url = `${baseUrl.API_URL}item/defect/${id}`;
+    let response = await axios.Patch({
+      url,
+      token,
+      data,
+    });
+
+    dispatch({ type: "POST_DEFACT_BARANG_SUCCESS" });
+    cb();
+  } catch (error) {
+    if (error.response) {
+      alert(error.response.data.message);
+      dispatch({ type: "POST_DEFACT_BARANG_ERROR" });
+    }
+  }
+};
