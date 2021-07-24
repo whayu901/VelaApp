@@ -58,7 +58,7 @@ const DetailBarang = () => {
 
   useEffect(() => {
     if (barang?.dataDetailBarang) {
-      setIdBarang(route.params.id);
+      setIdBarang(barang?.dataDetailBarang?.alias_id);
       setJumlahBarang(barang?.dataDetailBarang?.quantity);
       setNamaBarang(barang?.dataDetailBarang?.name);
       setHargaBarang(barang?.dataDetailBarang?.amount);

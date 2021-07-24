@@ -61,7 +61,7 @@ const ListBarang = () => {
             <CardBarang
               harga={item.amount}
               name={item.name}
-              id={item.id}
+              id={item.alias_id}
               qty={item.quantity}
               isDefact={route.params.type == "defact" ? true : false}
               onPressDelete={() => _deleteBarang(item.id)}
