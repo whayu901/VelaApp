@@ -67,6 +67,7 @@ const BarangDefact = () => {
                 navigation.navigate("Detail", { id: item.id, isDefact: true });
               }}
               harga={item.amount}
+              id={item.alias_id}
               name={item.name}
               qty={item.quantity}
             />

@@ -1,15 +1,17 @@
 import { axios, baseUrl } from "../../utils";
 
-export const getListBarang = () => async (dispatch, getState) => {
+export const getListBarang = (value) => async (dispatch, getState) => {
   try {
     const { token } = getState().auth;
     dispatch({ type: "GET_LIST_BARANG_PENDING" });
 
-    const url = `${baseUrl.API_URL}item`;
+    const url = `${baseUrl.API_URL}item?search=${value}`;
     let response = await axios.Get({
       url,
       token: token,
     });
+
+    console.log({ response });
     dispatch({
       type: "GET_LIST_BARANG_SUCCESS",
       payload: {

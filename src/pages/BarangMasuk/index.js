@@ -46,6 +46,7 @@ const BarangMasuk = () => {
     data.append("name", namaBarang);
     data.append("quantity", jumlahBarang);
     data.append("amount", hargaBarang);
+    data.append("rack_id", idRak);
     data.append("photo", {
       uri: imgBarang,
       type: "image/jpeg",
@@ -188,7 +189,7 @@ const BarangMasuk = () => {
             text={"Done"}
             onPress={() => {
               setVisible(false);
-              navigation.navigate("ListBarang");
+              navigation.navigate("ListBarang", { type: "masuk" });
             }}
           />
         </View>

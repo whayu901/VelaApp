@@ -21,19 +21,20 @@ const BarangKeluar = () => {
   );
 
   useEffect(() => {
-    dispatch(getListBarang());
+    dispatch(getListBarang(search));
   }, []);
 
   useEffect(() => {
     setTempData(barang?.dataListBarang);
   }, [barang?.dataListBarang]);
 
-  const _searchBarang = () => {
+  const _searchBarang = async () => {
     const formattedQuery = search.toLowerCase();
     const filter = tempData.filter((item) => {
       return item.name.toLowerCase().match(formattedQuery);
     });
 
+    await dispatch(getListBarang(search));
     if (!search || search == "") {
       setTempData(barang?.dataListBarang);
     } else {
