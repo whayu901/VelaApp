@@ -19,24 +19,26 @@ const CardBarang = ({
   return (
     <View style={styles.container}>
       <View>
-        <Text style={{ fontSize: 16, fontWeight: "bold" }}>Nama Barang</Text>
+        <Text style={{ fontSize: 14, fontWeight: "bold" }}>Nama Barang</Text>
         <Text style={{ textAlign: "center" }}>{name}</Text>
       </View>
 
       <View>
-        <Text style={{ fontSize: 16, fontWeight: "bold" }}>QTY</Text>
+        <Text style={{ fontSize: 14, fontWeight: "bold" }}>QTY</Text>
         <Text style={{ textAlign: "center" }}>{qty}</Text>
       </View>
 
       <View>
-        <Text style={{ fontSize: 16, fontWeight: "bold" }}>Harga Barang</Text>
+        <Text style={{ fontSize: 14, fontWeight: "bold" }}>Harga Barang</Text>
         <Text style={{ textAlign: "center" }}>{`Rp.${formatMoney(
           harga,
         )}`}</Text>
       </View>
 
       <View>
-        <Text style={{ fontSize: 16, fontWeight: "bold" }}>ID</Text>
+        <Text style={{ fontSize: 14, fontWeight: "bold", textAlign: "center" }}>
+          ID
+        </Text>
         <Text style={{ textAlign: "center" }}>{id}</Text>
       </View>
 

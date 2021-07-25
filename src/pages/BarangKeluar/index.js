@@ -68,6 +68,7 @@ const BarangKeluar = () => {
               }}
               harga={item.amount}
               name={item.name}
+              id={item.alias_id}
               qty={item.quantity}
             />
           </View>

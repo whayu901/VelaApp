@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
-import MainStack from "./MainStack";
+import MainStack from "./mainStack";
 
 const Route = () => {
   return (
