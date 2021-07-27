@@ -241,7 +241,7 @@ const DetailBarang = () => {
           <Button
             text={"Done"}
             onPress={() => {
-              navigation.navigate("ListBarang");
+              navigation.navigate("ListBarang", { type: "keluar" });
               setVisible(false);
             }}
           />

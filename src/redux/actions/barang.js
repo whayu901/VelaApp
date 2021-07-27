@@ -1,6 +1,6 @@
 import { axios, baseUrl } from "../../utils";
 
-export const getListBarang = (value) => async (dispatch, getState) => {
+export const getListBarang = (value = "") => async (dispatch, getState) => {
   try {
     const { token } = getState().auth;
     dispatch({ type: "GET_LIST_BARANG_PENDING" });
