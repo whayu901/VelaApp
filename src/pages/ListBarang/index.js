@@ -40,7 +40,7 @@ const ListBarang = () => {
     if (route.params.type == "defact") {
       await dispatch(getBarangDefact());
     } else {
-      await dispatch(getListBarang());
+      await dispatch(getListBarang(""));
     }
   };
 

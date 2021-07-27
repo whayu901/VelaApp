@@ -62,7 +62,7 @@ const Laporan = () => {
     // dispatch()
     const mulai = moment(tanggalMulaiBarangMasuk).format("YYYY-MM-DD");
     const selesai = moment(tanggalSelesaiBarangMasuk).format("YYYY-MM-DD");
-    const type = "in";
+    const type = "in,out,defect";
     await dispatch(
       reportBarang({
         tglMulai: mulai,
@@ -77,19 +77,19 @@ const Laporan = () => {
     Linking.openURL(`${baseUrl.URL_IMG}${link}`);
   };
 
-  const _reportBarangKeluar = async () => {
-    const mulai = moment(tanggalMulaiBarangKeluar).format("YYYY-MM-DD");
-    const selesai = moment(tanggalSelesaiBarangKeluar).format("YYYY-MM-DD");
-    const type = "out";
-    await dispatch(
-      reportBarang({
-        tglMulai: mulai,
-        tglSelesai: selesai,
-        type,
-        cb: (e) => _displayPDF(e),
-      }),
-    );
-  };
+  // const _reportBarangKeluar = async () => {
+  //   const mulai = moment(tanggalMulaiBarangKeluar).format("YYYY-MM-DD");
+  //   const selesai = moment(tanggalSelesaiBarangKeluar).format("YYYY-MM-DD");
+  //   const type = "out";
+  //   await dispatch(
+  //     reportBarang({
+  //       tglMulai: mulai,
+  //       tglSelesai: selesai,
+  //       type,
+  //       cb: (e) => _displayPDF(e),
+  //     }),
+  //   );
+  // };
 
   return (
     <SafeAreaView>
@@ -109,7 +109,7 @@ const Laporan = () => {
               marginHorizontal: 15,
             }}>
             <View style={{ paddingLeft: 15 }}>
-              <Text>Barang Masuk</Text>
+              <Text>Laporan Barang</Text>
             </View>
             <View style={{ marginEnd: 10 }}>
               <Icon name="chevron-down-sharp" size={30} />
@@ -167,7 +167,7 @@ const Laporan = () => {
         </Animated.View>
       </View>
 
-      {/* Barang Keluar */}
+      {/* Barang Keluar
       <View style={{ marginTop: 70 }}>
         <TouchableOpacity
           onPress={() => setVisibleBarangKeluar(!isVisibleBarangKeluar)}>
@@ -242,7 +242,7 @@ const Laporan = () => {
             </View>
           )}
         </Animated.View>
-      </View>
+      </View> */}
 
       {/* Tanggal mulai barang masuk */}
       <DateTimePicker
