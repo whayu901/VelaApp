@@ -49,7 +49,7 @@ const BarangDefact = () => {
   );
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <View style={{ marginHorizontal: 10, marginTop: 5 }}>
         <Searchbar
           placeholder="Cari Disini"
