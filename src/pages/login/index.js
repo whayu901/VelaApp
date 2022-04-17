@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { SafeAreaView, View, Text } from "react-native";
+import { SafeAreaView, View, Text, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native-paper";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import codePush from "react-native-code-push";
 import { useNavigation } from "@react-navigation/native";
 import Modal from "react-native-modal";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
-import styles from "./styles";
 import { Button, LoadingIndicator } from "../../components";
 import { wait } from "../../utils";
 import { login } from "../../redux/actions";
+
+import styles from "./styles";
 
 const LoginPage = () => {
   const navigation = useNavigation();
@@ -23,6 +25,17 @@ const LoginPage = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [update, setUpdate] = useState(false);
+
+  React.useEffect(() => {
+    codePush.checkForUpdate().then((update) => {
+      if (!update) {
+        setUpdate(false);
+      } else {
+        setUpdate(true);
+      }
+    });
+  }, []);
 
   const LoginForm = async () => {
     await dispatch(
@@ -41,7 +54,7 @@ const LoginPage = () => {
       <KeyboardAwareScrollView>
         <View style={styles.container}>
           <View>
-            <Text style={styles.loginText}>LOGIN</Text>
+            <Text style={styles.loginText}>Login</Text>
           </View>
 
           <View style={styles.inputContainer}>
@@ -65,7 +78,7 @@ const LoginPage = () => {
           </View>
 
           <View style={{ margin: 10 }}>
-            <Button text={"Login"} onPress={() => LoginForm()} />
+            <Button text={"Masuk"} onPress={() => LoginForm()} />
           </View>
 
           <View style={{ marginHorizontal: 10 }}>
@@ -74,6 +87,14 @@ const LoginPage = () => {
               onPress={() => navigation.navigate("Register")}
             />
           </View>
+
+          {update && (
+            <View>
+              <TouchableOpacity onPress={() => codePush.allowRestart()}>
+                <Text style={{ textAlign: "center" }}>Update Now</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
       </KeyboardAwareScrollView>
 
